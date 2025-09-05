@@ -1,22 +1,11 @@
 import ButtonSmall from "../utilities/ButtonSmall";
+import Price from "../utilities/Price";
 import Quantity from "../utilities/Quantity";
 function OilDescription({ children }) {
   return (
     <div className="h-auto w-full text-green-950">
       <div className="flex w-full flex-col items-start justify-center gap-8">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-wide lg:text-5xl">
-            Avoca Extra Virgin Avocado Oil
-          </h1>
-          <p className="text-xl font-bold">$9.99</p>
-          <p className="text-sm tracking-wider">
-            *Tax included.{" "}
-            <span className="text-blue-950 underline">
-              <a href="#">(Shipping)</a>
-            </span>{" "}
-            calculated at checkout.
-          </p>
-        </div>
+        <Price title="Avoca Extra Virgin Avocado Oil" price="9.99" />
         <div className="grid grid-cols-3 justify-items-center border-y-2 border-gray-950">
           <img
             className="w-[70%]"

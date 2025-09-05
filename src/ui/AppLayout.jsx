@@ -4,7 +4,7 @@ import FooterSection from "../components/FooterSection";
 
 function AppLayout() {
   return (
-    <div className="font-Truculenta bg-orange-100 text-green-50">
+    <div className="font-Truculenta bg-orange-100 text-green-950">
       <NavBar />
       <main>
         <Outlet />
