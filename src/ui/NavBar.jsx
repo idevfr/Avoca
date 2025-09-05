@@ -9,13 +9,46 @@ const styles = {
   navLinkStyle:
     "block text-center hover:rounded-2xl hover:bg-linear-to-r hover:from-green-300 hover:to-green-100 hover:text-green-950 active:rounded-2xl active:bg-linear-to-r active:from-green-300 active:to-green-100 active:text-green-950 px-4 py-1 hover:font-semibold active:hover:font-semibold",
 };
+//  <li>
+//             <NavLink className={handleLinkClick} to={"/oil"}>
+//               Buy now
+//             </NavLink>
+//           </li>
+//           <li>
+//             <NavLink className={handleLinkClick} to={"/bag"}>
+//               Buy Avoca Tote Bag
+//             </NavLink>
+//           </li>
+//           <li>
+//             <NavLink className={handleLinkClick} to={"/bundle"}>
+//               Avoca Ultimate Bundle
+//             </NavLink>
+//           </li>
+//           <li>
+//             <NavLink className={handleLinkClick} to={"/pourer"}>
+//               Gold Stainless Steel Pourer
+//             </NavLink>
+//           </li>
+const navLinks = [
+  { title: "Buy now", to: "/oil" },
+  { title: "Buy Avoca Tote Bag", to: "/bag" },
+  { title: "Avoca Ultimate Bundle", to: "/bundle" },
+  { title: "Gold Stainless Steel Pourer", to: "/pourer" },
+];
+
 function NavBar() {
   const navRef = useRef(null);
   const [isOpen, setIsopen] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
-  function handleClick() {
+  function handleMenuClick() {
     setIsopen((open) => !open);
+  }
+  function handleLinkClick() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
   useEffect(() => {
     if (navRef.current) {
@@ -57,13 +90,14 @@ function NavBar() {
         >
           <Link to={"/"}>
             <img
+              onClick={handleLinkClick}
               src="logos/logo-light.avif"
               alt="company-logo"
               className="col-start-2 row-start-1 h-5 place-self-center lg:col-start-1 lg:h-auto lg:w-auto lg:justify-self-start"
             />
           </Link>
           <div
-            onClick={handleClick}
+            onClick={handleMenuClick}
             className="col-start-1 row-start-1 justify-self-start lg:hidden"
           >
             <CiMenuBurger
@@ -76,18 +110,15 @@ function NavBar() {
           </div>
 
           <ul className="hidden gap-3.5 justify-self-center font-semibold whitespace-nowrap md:text-sm lg:flex lg:justify-self-start lg:text-lg">
-            <li>
-              <NavLink to={"/oil"}>Buy now</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/bag"}>Buy Avoca Tote Bag</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/bundle"}>Avoca Ultimate Bundle</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/pourer"}>Gold Stainless Steel Pourer</NavLink>
-            </li>
+            {navLinks.map((el) => {
+              return (
+                <li>
+                  <NavLink onClick={handleLinkClick} to={el.to}>
+                    {el.title}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
 
           <CiShoppingCart
@@ -104,34 +135,25 @@ function NavBar() {
           style={{ height: `calc(100dvh - ${navHeight}px)` }}
           className={`absolute top-[${navHeight}px] ${isOpen ? "block translate-x-0 border-t-[1px] border-t-gray-400 opacity-100" : "-translate-x-full opacity-0"} z-50 flex w-[100dvw] items-center justify-center bg-green-800 text-green-50 transition-all duration-300 ease-in-out sm:w-[50dvw]`}
         >
-          <ul onClick={handleClick} className={`space-y-2 sm:space-y-4`}>
-            <li>
-              <NavLink className={styles.navLinkStyle} to={"/oil"}>
-                Buy now
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={styles.navLinkStyle} to={"/bag"}>
-                Buy Avoca Tote Bag
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={styles.navLinkStyle} to={"/bundle"}>
-                Avoca Ultimate Bundle
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={styles.navLinkStyle} to={"/pourer"}>
-                Gold Stainless Steel Pourer
-              </NavLink>
-            </li>
+          <ul onClick={handleMenuClick} className={`space-y-2 sm:space-y-4`}>
+            {navLinks.map((el) => {
+              return (
+                <li>
+                  <NavLink
+                    className={styles.navLinkStyle}
+                    onClick={handleLinkClick}
+                    to={el.to}
+                  >
+                    {el.title}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </header>
     </div>
   );
 }
-
-//  <CiShoppingCart className="h-10 w-10 cursor-pointer" />
 
 export default NavBar;
