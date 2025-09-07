@@ -110,9 +110,9 @@ function NavBar() {
           </div>
 
           <ul className="hidden gap-3.5 justify-self-center font-semibold whitespace-nowrap md:text-sm lg:flex lg:justify-self-start lg:text-lg">
-            {navLinks.map((el) => {
+            {navLinks.map((el, i) => {
               return (
-                <li>
+                <li key={i}>
                   <NavLink onClick={handleLinkClick} to={el.to}>
                     {el.title}
                   </NavLink>
@@ -136,9 +136,9 @@ function NavBar() {
           className={`absolute top-[${navHeight}px] ${isOpen ? "block translate-x-0 border-t-[1px] border-t-gray-400 opacity-100" : "-translate-x-full opacity-0"} z-50 flex w-[100dvw] items-center justify-center bg-green-800 text-green-50 transition-all duration-300 ease-in-out sm:w-[50dvw]`}
         >
           <ul onClick={handleMenuClick} className={`space-y-2 sm:space-y-4`}>
-            {navLinks.map((el) => {
+            {navLinks.map((el, i) => {
               return (
-                <li>
+                <li key={i}>
                   <NavLink
                     className={styles.navLinkStyle}
                     onClick={handleLinkClick}

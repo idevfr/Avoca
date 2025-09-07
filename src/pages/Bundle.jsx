@@ -6,17 +6,17 @@ import Button from "../utilities/Button";
 function Bundle() {
   return (
     <div className="flex h-full w-full flex-col gap-10 px-10 py-20 lg:flex-row">
-      <div className="w-[50%]">
+      <div className="w-full lg:w-[50%]">
         <img
           className="w-full rounded-2xl"
           src="/other-product-images/bundle.webp"
           alt="bundle product image"
         />
       </div>
-      <div className="w-[50%] space-y-6 px-20">
+      <div className="w-full space-y-2.5 px-2 md:px-6 lg:w-[50%] lg:space-y-6 lg:px-20">
         <Price title="Avoca Ultimate Bundle" price="14.99" />
-        <div className="space-y-10">
-          <p className="text-3xl/10 tracking-wide">
+        <div className="space-y-4 lg:space-y-10">
+          <p className="text-xl/6 tracking-wide lg:text-3xl/10">
             This Ultimate Bundle includes everything{" "}
             <span className="font-semibold underline">
               <Link to={"/oil"}> Avoca</Link>
@@ -24,9 +24,9 @@ function Bundle() {
             ! It is a great starter pack or always good to stock up if you're
             not a newbie!
           </p>
-          <div className="pl-8 text-lg">
+          <div className="pl-2 text-lg lg:pl-8">
             <p className="text-xl font-semibold">Includes:</p>
-            <ul className="list-disc pl-16">
+            <ul className="list-disc pl-8 lg:pl-16">
               <li>Avoca 500 ml</li>
               <li>Avoca 200 ml</li>
               <li>
