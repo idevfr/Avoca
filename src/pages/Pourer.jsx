@@ -3,10 +3,10 @@ import Price from "../utilities/Price";
 
 function Pourer() {
   return (
-    <div className="flex flex-col gap-10 py-16 text-green-950 md:gap-0 lg:flex-row">
+    <div className="flex flex-col gap-10 py-8 text-green-950 md:gap-0 lg:flex-row lg:py-16">
       <div className="flex w-full items-center justify-center lg:w-[50%]">
         <img
-          className="w-[25rem] rounded-4xl bg-orange-200/50"
+          className="w-[15rem] rounded-4xl bg-orange-200/50 lg:w-[25rem]"
           src="/other-product-images/pourer-1.webp"
           alt="Tote bag image"
         />
