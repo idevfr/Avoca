@@ -9,31 +9,11 @@ const styles = {
   navLinkStyle:
     "block text-center hover:rounded-2xl hover:bg-linear-to-r hover:from-green-300 hover:to-green-100 hover:text-green-950 active:rounded-2xl active:bg-linear-to-r active:from-green-300 active:to-green-100 active:text-green-950 px-4 py-1 hover:font-semibold active:hover:font-semibold",
 };
-//  <li>
-//             <NavLink className={handleLinkClick} to={"/oil"}>
-//               Buy now
-//             </NavLink>
-//           </li>
-//           <li>
-//             <NavLink className={handleLinkClick} to={"/bag"}>
-//               Buy Avoca Tote Bag
-//             </NavLink>
-//           </li>
-//           <li>
-//             <NavLink className={handleLinkClick} to={"/bundle"}>
-//               Avoca Ultimate Bundle
-//             </NavLink>
-//           </li>
-//           <li>
-//             <NavLink className={handleLinkClick} to={"/pourer"}>
-//               Gold Stainless Steel Pourer
-//             </NavLink>
-//           </li>
 const navLinks = [
   { title: "Buy now", to: "/oil" },
   { title: "Buy Avoca Tote Bag", to: "/bag" },
-  { title: "Avoca Ultimate Bundle", to: "/bundle" },
   { title: "Gold Stainless Steel Pourer", to: "/pourer" },
+  { title: "Avoca Ultimate Bundle", to: "/bundle" },
 ];
 
 function NavBar() {
