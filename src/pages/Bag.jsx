@@ -1,4 +1,5 @@
 import Button from "../utilities/Button";
+import Price from "../utilities/Price";
 import Quantity from "../utilities/Quantity";
 
 function Bag() {
@@ -12,19 +13,8 @@ function Bag() {
         />
       </div>
       <div className="w-full space-y-5 px-6 md:px-20 lg:w-[50%]">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-wide lg:text-5xl">
-            Avoca Tote Bag
-          </h1>
-          <p className="text-xl font-bold">$2.99</p>
-          <p className="text-sm tracking-wider">
-            *Tax included.{" "}
-            <span className="text-blue-950 underline">
-              <a href="#">(Shipping)</a>
-            </span>{" "}
-            calculated at checkout.
-          </p>
-        </div>
+        <Price title="Avoca Tote Bag" price="2.99" />
+
         <div>
           <h3 className="text-2xl/loose font-bold">Description</h3>
           <p className="text-xl/8 tracking-wide">
