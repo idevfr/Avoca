@@ -5,6 +5,7 @@ import Bag from "./pages/Bag";
 import Bundle from "./pages/Bundle";
 import Pourer from "./pages/Pourer";
 import AppLayout from "./ui/AppLayout";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/oil" element={<Oil />} />
           <Route path="/bag" element={<Bag />} />
-          <Route path="/bundle" element={<Bundle />} />
           <Route path="/pourer" element={<Pourer />} />
+          <Route path="/bundle" element={<Bundle />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </BrowserRouter>

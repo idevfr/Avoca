@@ -100,17 +100,17 @@ function NavBar() {
               );
             })}
           </ul>
-
-          <CiShoppingCart
-            className={`${styles.iconStyle} col-start-3 row-start-1 justify-self-end hover:scale-105`}
-          />
+          <Link to={"/cart"} className="pr-8">
+            <div className="relative">
+              <CiShoppingCart
+                className={`${styles.iconStyle} col-start-3 row-start-1 justify-self-end hover:scale-105`}
+              />
+              <div className="absolute -top-2 -right-2 flex h-6 w-6 animate-pulse items-center justify-center rounded-full bg-green-50 text-sm font-bold text-green-950">
+                1
+              </div>
+            </div>
+          </Link>
         </nav>
-
-        {/* <h1
-        className={`relative top-[calc(${navHeight}-100vh)] w-[50dvw] bg-red-600 text-black`}
-        >
-        HI
-        </h1> */}
         <div
           style={{ height: `calc(100dvh - ${navHeight}px)` }}
           className={`absolute top-[${navHeight}px] ${isOpen ? "block translate-x-0 border-t-[1px] border-t-gray-400 opacity-100" : "-translate-x-full opacity-0"} z-50 flex w-[100dvw] items-center justify-center bg-green-800 text-green-50 transition-all duration-300 ease-in-out sm:w-[50dvw]`}
