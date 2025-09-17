@@ -42,7 +42,7 @@ function Cart() {
     <div className="grid min-h-[70dvh] w-full gap-6 px-16 py-10 lg:gap-16">
       <div className="flex items-center justify-between tracking-wider">
         <h1 className="text-3xl font-semibold lg:text-5xl">Your Cart</h1>
-        <Link className="text-sm text-blue-800 underline lg:text-xl">
+        <Link to={"/"} className="text-sm text-blue-800 underline lg:text-xl">
           Continue shopping
         </Link>
       </div>
