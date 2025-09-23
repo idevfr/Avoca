@@ -1,7 +1,29 @@
+import { useCart } from "../context/cartContext";
+import { useQuantity } from "../context/quantityContext";
 import Button from "../utilities/Button";
 import Price from "../utilities/Price";
+import Quantity from "../utilities/Quantity";
+const pourerFileds = {
+  id: 4,
+  title: "Gold Stainless Steel Pourer",
+  image: "/other-product-images/pourer-1.webp",
+  price: 1.99,
+};
 
 function Pourer() {
+  const { quantity } = useQuantity();
+  const { addToCart, value } = useCart();
+  const newObj = {
+    ...pourerFileds,
+    quantity: quantity,
+    price: pourerFileds.price * quantity,
+  };
+  const ids = value.map((v) => v.id);
+  function handleClick() {
+    if (!quantity || quantity < 1) return alert("please add something");
+    if (ids.includes(newObj.id)) return alert("item already in your cart !");
+    addToCart(newObj);
+  }
   return (
     <div className="flex flex-col gap-10 py-8 text-green-950 md:gap-0 lg:flex-row lg:py-16">
       <div className="flex w-full items-center justify-center lg:w-[50%]">
@@ -12,7 +34,7 @@ function Pourer() {
         />
       </div>
       <div className="w-full space-y-5 px-6 lg:w-[50%] lg:px-20">
-        <Price title="Gold Stainless Steel Pourer" price="1.99" />
+        <Price title={pourerFileds.title} price={pourerFileds.price} />
         <div className="space-y-8 px-2 pr-0 text-xl tracking-wide lg:pr-40">
           <div className="space-y-2.5 lg:space-y-3.5">
             <h3 className="text-2xl font-semibold">Description:</h3>
@@ -63,8 +85,11 @@ function Pourer() {
           </div>
         </div>
         <div className="flex flex-col gap-3.5">
-          <Button>Add to cart</Button>
-          <Button bg={true}>Buy now</Button>
+          <Quantity />
+          <div className="flex flex-col gap-2">
+            <Button handleClick={handleClick}>Add to cart</Button>
+            <Button bg={true}>Buy now</Button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,14 +1,18 @@
-import { useQuantity } from "../context/QuantityContext";
+import { useEffect, useState } from "react";
+import { useQuantity } from "../context/quantityContext";
 
 function Quantity({ productId, showTitle = true }) {
+  const [value, setValue] = useState(0);
   const { quantity, setQuantity } = useQuantity();
-  console.log(productId);
   function handleInc() {
-    setQuantity((val) => val + 1);
+    setValue((val) => val + 1);
   }
   function handleDec() {
-    setQuantity((val) => (val > 1 ? val - 1 : 1));
+    if (value > 0) setValue((val) => val - 1);
   }
+  useEffect(() => {
+    setQuantity(value);
+  }, [value, setQuantity]);
 
   return (
     <div>
@@ -18,12 +22,12 @@ function Quantity({ productId, showTitle = true }) {
           -
         </button>
         <input
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={(e) => setValue(Number(e.target.value))}
+          value={value}
           type="number"
           name="quantity"
           id="quantity"
           className="w-[3rem] text-center"
-          value={quantity}
         />
         <button onClick={handleInc} className="w-[3rem] cursor-pointer">
           +

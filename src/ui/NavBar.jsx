@@ -105,9 +105,9 @@ function NavBar() {
               <CiShoppingCart
                 className={`${styles.iconStyle} col-start-3 row-start-1 justify-self-end hover:scale-105`}
               />
-              <div className="absolute -top-2 -right-2 flex h-6 w-6 animate-pulse items-center justify-center rounded-full bg-green-50 text-sm font-bold text-green-950">
+              {/* <div className="absolute -top-2 -right-2 flex h-6 w-6 animate-pulse items-center justify-center rounded-full bg-green-50 text-sm font-bold text-green-950">
                 1
-              </div>
+              </div> */}
             </div>
           </Link>
         </nav>

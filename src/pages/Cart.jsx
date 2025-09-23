@@ -2,35 +2,48 @@ import { Link } from "react-router";
 import Button from "../utilities/Button";
 import Quantity from "../utilities/Quantity";
 
-const cartData = [
-  {
-    id: 1,
-    title: "Gold Stainless Steel Pourer",
-    image: "/other-product-images/pourer-1.webp",
-    price: 10,
-  },
-  {
-    id: 2,
-    title: "Avoca Tote Bag",
-    image: "/other-product-images/AvocaTote.webp",
-    price: 10,
-  },
-  {
-    id: 3,
-    title: "Avoca Ultimate Bundle",
-    image: "/other-product-images/bundle.webp",
-    price: 10,
-  },
-  {
-    id: 4,
-    title: "Avoca Extra Virgin Avocado Oil",
-    image: "/other-product-images/oil.webp",
-    price: 10,
-  },
-];
-// const cartData = [];
+import { useEffect, useState } from "react";
+import CartItems from "../ui/CartItems";
+
+// const cartData = [
+//   {
+//     id: 1,
+//     title: "Gold Stainless Steel Pourer",
+//     image: "/other-product-images/pourer-1.webp",
+//     price: 10,
+//   },
+//   {
+//     id: 2,
+//     title: "Avoca Tote Bag",
+//     image: "/other-product-images/AvocaTote.webp",
+//     price: 10,
+//   },
+//   {
+//     id: 3,
+//     title: "Avoca Ultimate Bundle",
+//     image: "/other-product-images/bundle.webp",
+//     price: 10,
+//   },
+//   {
+//     id: 4,
+//     title: "Avoca Extra Virgin Avocado Oil",
+//     image: "/other-product-images/oil.webp",
+//     price: 10,
+//   },
+// ];
 function Cart() {
-  if (!cartData.length)
+  const [cartData, setCartData] = useState([]);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("items"));
+    setCartData(data);
+  }, []);
+
+  function handleDelete(id) {
+    const updatedCart = cartData.filter((cart) => cart.id !== id);
+    localStorage.setItem("items", JSON.stringify(updatedCart));
+    setCartData(updatedCart);
+  }
+  if (!cartData || !cartData.length)
     return (
       <div className="flex min-h-[70dvh] w-full items-center justify-center px-6 py-10 lg:px-16">
         <h1 className="text-3xl font-semibold">
@@ -46,7 +59,7 @@ function Cart() {
           Continue shopping
         </Link>
       </div>
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col">
         <div className="hidden w-full grid-cols-[2fr_1.5fr_0.5fr] border-b-2 lg:grid">
           <div>PRODUCT</div>
           <div>QUANTITY</div>
@@ -55,29 +68,7 @@ function Cart() {
         <div className="md:border-b-2">
           {cartData.map((cart, i) => {
             return (
-              <div
-                key={i}
-                className="grid w-full grid-rows-[2fr_1fr_1fr] items-center border-b-2 pt-6 md:grid-cols-[2fr_1.5fr_0.5fr] md:border-0 lg:h-[10rem]"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="h-[4rem] w-[4rem] md:h-[8rem] md:w-[8rem]">
-                    <img
-                      className="h-full w-full object-contain"
-                      src={cart.image}
-                      alt="product image"
-                    />
-                  </div>
-                  <p className="text-sm font-semibold lg:text-xl">
-                    {cart.title}
-                  </p>
-                </div>
-                <div>
-                  <Quantity productId={cart.id} showTitle={false} />
-                </div>
-                <div className="place-self-center justify-self-end pr-8 text-xl md:text-3xl">
-                  ${cart.price}
-                </div>
-              </div>
+              <CartItems key={cart.id} cart={cart} handler={handleDelete} />
             );
           })}
         </div>

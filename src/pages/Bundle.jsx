@@ -2,8 +2,29 @@ import { Link } from "react-router";
 import Price from "../utilities/Price";
 import Quantity from "../utilities/Quantity";
 import Button from "../utilities/Button";
+import { useQuantity } from "../context/quantityContext";
+import { useCart } from "../context/cartContext";
+const bundleFields = {
+  id: 3,
+  title: "Avoca Ultimate Bundle",
+  image: "/other-product-images/bundle.webp",
+  price: 14.99,
+};
 
 function Bundle() {
+  const { quantity } = useQuantity();
+  const { addToCart, value } = useCart();
+  const newObj = {
+    ...bundleFields,
+    quantity: quantity,
+    price: bundleFields.price * quantity,
+  };
+  const ids = value.map((v) => v.id);
+  function handleClick() {
+    if (!quantity || quantity < 1) return alert("please add something");
+    if (ids.includes(newObj.id)) return alert("item already in your cart !");
+    addToCart(newObj);
+  }
   return (
     <div className="flex h-full w-full flex-col gap-10 px-10 py-20 lg:flex-row">
       <div className="w-full lg:w-[50%]">
@@ -14,7 +35,7 @@ function Bundle() {
         />
       </div>
       <div className="w-full space-y-2.5 px-2 md:px-6 lg:w-[50%] lg:space-y-6 lg:px-20">
-        <Price title="Avoca Ultimate Bundle" price="14.99" />
+        <Price title={bundleFields.title} price={bundleFields.price} />
         <div className="space-y-4 lg:space-y-10">
           <p className="text-xl/6 tracking-wide lg:text-3xl/10">
             This Ultimate Bundle includes everything{" "}
@@ -48,7 +69,7 @@ function Bundle() {
         </div>
         <Quantity />
         <div className="flex flex-col gap-3.5">
-          <Button>Add to cart!</Button>
+          <Button handleClick={handleClick}>Add to cart!</Button>
           <Button bg={true}>Buy now</Button>
         </div>
       </div>

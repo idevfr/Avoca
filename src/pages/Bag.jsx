@@ -1,8 +1,29 @@
+import { useCart } from "../context/cartContext";
+import { useQuantity } from "../context/quantityContext";
 import Button from "../utilities/Button";
 import Price from "../utilities/Price";
 import Quantity from "../utilities/Quantity";
+const bagFields = {
+  id: 2,
+  title: "Avoca Tote Bag",
+  image: "/other-product-images/AvocaTote.webp",
+  price: 2.99,
+};
 
 function Bag() {
+  const { quantity } = useQuantity();
+  const { addToCart, value } = useCart();
+  const newObj = {
+    ...bagFields,
+    quantity: quantity,
+    price: bagFields.price * quantity,
+  };
+  const ids = value.map((v) => v.id);
+  function handleClick() {
+    if (!quantity || quantity < 1) return alert("please add something");
+    if (ids.includes(newObj.id)) return alert("item already in your cart !");
+    addToCart(newObj);
+  }
   return (
     <div className="flex flex-col gap-10 py-16 text-green-950 md:gap-0 lg:flex-row">
       <div className="flex w-full items-center justify-center px-10 md:px-2 lg:w-[50%]">
@@ -13,7 +34,7 @@ function Bag() {
         />
       </div>
       <div className="w-full space-y-5 px-6 md:px-20 lg:w-[50%]">
-        <Price title="Avoca Tote Bag" price="2.99" />
+        <Price title={bagFields.title} price={bagFields.price} />
 
         <div>
           <h3 className="text-2xl/loose font-bold">Description</h3>
@@ -33,7 +54,7 @@ function Bag() {
         </div>
         <Quantity />
         <div className="flex flex-col gap-4">
-          <Button>Add to cart</Button>
+          <Button handleClick={handleClick}>Add to cart</Button>
           <Button bg={true}>Buy now</Button>
         </div>
       </div>
