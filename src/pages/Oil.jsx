@@ -1,6 +1,5 @@
 import { useCart } from "../context/cartContext";
 import { useQuantity } from "../context/quantityContext";
-import { useLocalStorageState } from "../hooks/useLocalStorage";
 import AvocaImageGallarey from "../ui/AvocaImageGallarey";
 import OilDescription from "../ui/OilDescription";
 import Button from "../utilities/Button";
@@ -12,17 +11,14 @@ const oilFileds = {
 };
 function Oil() {
   const { quantity } = useQuantity();
-  const { addToCart, value } = useCart();
-  const newObj = {
+  const obj = {
     ...oilFileds,
     quantity: quantity,
     price: oilFileds.price * quantity,
   };
-  const ids = value.map((v) => v.id);
-  function handleClick() {
-    if (!quantity || quantity < 1) return alert("please add something");
-    if (ids.includes(newObj.id)) return alert("item already in your cart !");
-    addToCart(newObj);
+  const { add } = useCart();
+  function handleAdd() {
+    add(obj);
   }
 
   return (
@@ -32,7 +28,7 @@ function Oil() {
       </div>
       <div className="lg:scrollbar-hide h-auto w-full lg:w-[50%] lg:overflow-scroll">
         <OilDescription>
-          <Button handleClick={handleClick}>Add to Cart</Button>
+          <Button handleClick={handleAdd}>Add to Cart</Button>
           <Button bg={true}>Buy now</Button>
         </OilDescription>
       </div>

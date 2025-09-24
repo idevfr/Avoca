@@ -13,17 +13,14 @@ const bundleFields = {
 
 function Bundle() {
   const { quantity } = useQuantity();
-  const { addToCart, value } = useCart();
-  const newObj = {
+  const obj = {
     ...bundleFields,
     quantity: quantity,
     price: bundleFields.price * quantity,
   };
-  const ids = value.map((v) => v.id);
-  function handleClick() {
-    if (!quantity || quantity < 1) return alert("please add something");
-    if (ids.includes(newObj.id)) return alert("item already in your cart !");
-    addToCart(newObj);
+  const { add } = useCart();
+  function handleAdd() {
+    add(obj);
   }
   return (
     <div className="flex h-full w-full flex-col gap-10 px-10 py-20 lg:flex-row">
@@ -69,7 +66,7 @@ function Bundle() {
         </div>
         <Quantity />
         <div className="flex flex-col gap-3.5">
-          <Button handleClick={handleClick}>Add to cart!</Button>
+          <Button handleClick={handleAdd}>Add to cart!</Button>
           <Button bg={true}>Buy now</Button>
         </div>
       </div>

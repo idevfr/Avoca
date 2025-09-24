@@ -12,17 +12,14 @@ const pourerFileds = {
 
 function Pourer() {
   const { quantity } = useQuantity();
-  const { addToCart, value } = useCart();
-  const newObj = {
+  const obj = {
     ...pourerFileds,
     quantity: quantity,
     price: pourerFileds.price * quantity,
   };
-  const ids = value.map((v) => v.id);
-  function handleClick() {
-    if (!quantity || quantity < 1) return alert("please add something");
-    if (ids.includes(newObj.id)) return alert("item already in your cart !");
-    addToCart(newObj);
+  const { add } = useCart();
+  function handleAdd() {
+    add(obj);
   }
   return (
     <div className="flex flex-col gap-10 py-8 text-green-950 md:gap-0 lg:flex-row lg:py-16">
@@ -87,7 +84,7 @@ function Pourer() {
         <div className="flex flex-col gap-3.5">
           <Quantity />
           <div className="flex flex-col gap-2">
-            <Button handleClick={handleClick}>Add to cart</Button>
+            <Button handleClick={handleAdd}>Add to cart</Button>
             <Button bg={true}>Buy now</Button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Quantity from "../utilities/Quantity";
 
 import { useEffect, useState } from "react";
 import CartItems from "../ui/CartItems";
+import { useCart } from "../context/cartContext";
 
 // const cartData = [
 //   {
@@ -31,18 +32,9 @@ import CartItems from "../ui/CartItems";
 //     price: 10,
 //   },
 // ];
+// const cartData = [];
 function Cart() {
-  const [cartData, setCartData] = useState([]);
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("items"));
-    setCartData(data);
-  }, []);
-
-  function handleDelete(id) {
-    const updatedCart = cartData.filter((cart) => cart.id !== id);
-    localStorage.setItem("items", JSON.stringify(updatedCart));
-    setCartData(updatedCart);
-  }
+  const { cart: cartData } = useCart();
   if (!cartData || !cartData.length)
     return (
       <div className="flex min-h-[70dvh] w-full items-center justify-center px-6 py-10 lg:px-16">
@@ -67,9 +59,7 @@ function Cart() {
         </div>
         <div className="md:border-b-2">
           {cartData.map((cart, i) => {
-            return (
-              <CartItems key={cart.id} cart={cart} handler={handleDelete} />
-            );
+            return <CartItems key={cart.id} cart={cart} />;
           })}
         </div>
       </div>
