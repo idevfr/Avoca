@@ -32,6 +32,10 @@ import { useCart } from "../context/cartContext";
 // const cartData = [];
 function Cart() {
   const { cart: cartData } = useCart();
+
+  const total = cartData?.reduce((acc, cart) => {
+    return acc + cart.price;
+  }, 0);
   if (!cartData || !cartData.length)
     return (
       <div className="flex min-h-[70dvh] w-full items-center justify-center px-6 py-10 lg:px-16">
@@ -63,7 +67,7 @@ function Cart() {
       <div className="space-y-2.5 place-self-end">
         <div className="flex gap-6 text-2xl font-semibold">
           <p>Estimated total:</p>
-          <p>${"69"}</p>
+          <p>${total.toFixed(2)}</p>
         </div>
         <div>
           <p className="text-sm tracking-wider">

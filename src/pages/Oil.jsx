@@ -5,7 +5,7 @@ import OilDescription from "../ui/OilDescription";
 import Button from "../utilities/Button";
 const oilFileds = {
   id: 1,
-  title: "Gold Stainless Steel Pourer",
+  title: "Avoca Extra Virgin Avocado Oil",
   image: "/other-product-images/oil.webp",
   price: 10,
 };
