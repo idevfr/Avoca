@@ -1,8 +1,5 @@
 import { Link } from "react-router";
 import Button from "../utilities/Button";
-import Quantity from "../utilities/Quantity";
-
-import { useEffect, useState } from "react";
 import CartItems from "../ui/CartItems";
 import { useCart } from "../context/cartContext";
 
