@@ -4,6 +4,7 @@ import Quantity from "../utilities/Quantity";
 import Button from "../utilities/Button";
 import { useQuantity } from "../context/quantityContext";
 import { useCart } from "../context/cartContext";
+import toast from "react-hot-toast";
 const bundleFields = {
   id: 3,
   title: "Avoca Ultimate Bundle",
@@ -20,7 +21,12 @@ function Bundle() {
   };
   const { add } = useCart();
   function handleAdd() {
-    add(obj);
+    if (quantity > 0) {
+      add(obj);
+      toast.success("Successfully added to cart");
+    } else {
+      toast.error("FAILED (add at least one item)");
+    }
   }
   return (
     <div className="flex h-full w-full flex-col gap-10 px-10 py-20 lg:flex-row">

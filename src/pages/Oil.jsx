@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useCart } from "../context/cartContext";
 import { useQuantity } from "../context/quantityContext";
 import AvocaImageGallarey from "../ui/AvocaImageGallarey";
@@ -7,7 +8,7 @@ const oilFileds = {
   id: 1,
   title: "Avoca Extra Virgin Avocado Oil",
   image: "/other-product-images/oil.webp",
-  price: 10,
+  price: 9.99,
 };
 function Oil() {
   const { quantity } = useQuantity();
@@ -18,7 +19,12 @@ function Oil() {
   };
   const { add } = useCart();
   function handleAdd() {
-    add(obj);
+    if (quantity > 0) {
+      add(obj);
+      toast.success("Successfully added to cart");
+    } else {
+      toast.error("FAILED (add at least one item)");
+    }
   }
 
   return (

@@ -8,7 +8,8 @@ function Quantity({ productId, showTitle = true }) {
     setValue((val) => val + 1);
   }
   function handleDec() {
-    if (value > 0) setValue((val) => val - 1);
+    // if (value > 1) setValue((val) => val - 1);
+    setValue((val) => val - 1);
   }
   useEffect(() => {
     setQuantity(value);

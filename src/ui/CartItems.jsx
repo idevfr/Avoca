@@ -18,7 +18,7 @@ function CartItems({ cart }) {
     setValue((val) => val + 1);
   }
   function handleDec() {
-    setValue((val) => val - 1);
+    if (value > 1) setValue((val) => val - 1);
   }
   function handleRemove() {
     remove(cart.id);

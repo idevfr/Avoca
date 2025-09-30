@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useCart } from "../context/cartContext";
 import { useQuantity } from "../context/quantityContext";
 import Button from "../utilities/Button";
@@ -19,7 +20,12 @@ function Bag() {
   };
   const { add } = useCart();
   function handleAdd() {
-    add(obj);
+    if (quantity > 0) {
+      add(obj);
+      toast.success("Successfully added to cart");
+    } else {
+      toast.error("FAILED (add at least one item)");
+    }
   }
   return (
     <div className="flex flex-col gap-10 py-16 text-green-950 md:gap-0 lg:flex-row">
