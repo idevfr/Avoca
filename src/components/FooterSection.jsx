@@ -1,5 +1,5 @@
 import {
-  AiOutlineFacebook,
+  AiOutlineGithub,
   AiOutlineTwitter,
   AiOutlineWhatsApp,
 } from "react-icons/ai";
@@ -17,13 +17,13 @@ function FooterSection() {
       <div className="flex w-full flex-col justify-between gap-3 lg:flex-row lg:gap-0">
         <div className="space-y-3.5">
           <img className="w-[6rem]" src="/logos/logo.webp" alt="company-logo" />
-          <h4 className={styles.h4}>Aditi Essentials Pvt. Ltd.</h4>
+          <h4 className={styles.h4}>Lorem Ipsum Pvt. Ltd.</h4>
           <p className={styles.p}>
-            212, Hubtown Solaris, 2nd Floor, Andheri (E)
+            Lorem ipsum dolor sit. 212, Lorem ipsum, 2nd Floor, Lorem (E)
             <br />
-            Mumbai-400069.
+            Lorem-4009.
             <br />
-            Customer Care: +91 9320412495,
+            Customer Care: +88 01800000,
           </p>
         </div>
         <div>
@@ -67,8 +67,8 @@ function FooterSection() {
             <Link to={"#"}>
               <AiOutlineWhatsApp className={styles.icon} />
             </Link>
-            <Link to={"#"}>
-              <AiOutlineFacebook className={styles.icon} />
+            <Link to={"https://github.com/idevfr"}>
+              <AiOutlineGithub className={styles.icon} />
             </Link>
             <Link to={"#"}>
               <AiOutlineTwitter className={styles.icon} />
@@ -94,8 +94,8 @@ function FooterSection() {
           </span>
           | Developed by{" "}
           <span className="text-2xl font-semibold hover:underline">
-            <Link target="blank" to={"https://www.instagram.com/not.imu/"}>
-              Imu
+            <Link target="blank" to={"https://github.com/idevfr"}>
+              Imran Hossain
             </Link>
           </span>
         </p>
