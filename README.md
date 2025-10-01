@@ -1,4 +1,4 @@
-Avoca-a website for a comapany that sells avocado oil
+Avoca-a website for a comapany that sells avocado oil................
 Technologies used to build this project: 
 (React,Tailwind-css)
 steps to follow for see locally
