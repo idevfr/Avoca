@@ -27,7 +27,7 @@ function Bag() {
       add(obj);
       toast.success("Successfully added to cart");
     } else {
-      toast.error("FAILED (add at least one item)");
+      toast.error("add at least one item");
     }
   }
   return (

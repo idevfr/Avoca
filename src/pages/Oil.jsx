@@ -17,13 +17,16 @@ function Oil() {
     quantity: quantity,
     price: oilFileds.price * quantity,
   };
-  const { add } = useCart();
+  const { add, cart } = useCart();
+  const ids = cart.map((c) => c.id);
   function handleAdd() {
+    if (ids.includes(oilFileds.id))
+      return toast.success("item is already in your cart");
     if (quantity > 0) {
       add(obj);
       toast.success("Successfully added to cart");
     } else {
-      toast.error("FAILED (add at least one item)");
+      toast.error("PLEASE...! add at least one item");
     }
   }
 
