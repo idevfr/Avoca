@@ -3,7 +3,7 @@ import { useCart } from "../context/cartContext";
 import { useQuantity } from "../context/quantityContext";
 import OilDescription from "../ui/OilDescription";
 import Button from "../utilities/Button";
-const oilFileds = {
+const oilFields = {
   id: 1,
   title: "Avoca Extra Virgin Avocado Oil",
   image: "/other-product-images/oil.webp",
@@ -13,17 +13,20 @@ const oilFileds = {
 function CtaSection() {
   const { quantity } = useQuantity();
   const obj = {
-    ...oilFileds,
+    ...oilFields,
     quantity: quantity,
-    price: oilFileds.price * quantity,
+    price: oilFields.price * quantity,
   };
-  const { add } = useCart();
+  const { add, cart } = useCart();
+  const ids = cart.map((c) => c.id);
   function handleAdd() {
+    if (ids.includes(oilFields.id))
+      return toast.success("item is already in your cart");
     if (quantity > 0) {
       add(obj);
       toast.success("Successfully added to cart");
     } else {
-      toast.error("FAILED (add at least one item)");
+      toast.error("add at least one item");
     }
   }
   return (
